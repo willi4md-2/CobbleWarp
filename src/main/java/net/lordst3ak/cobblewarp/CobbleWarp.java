@@ -9,10 +9,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
-
+import net.lordst3ak.cobblewarp.command.ExampleCommand;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CobbleWarp.MOD_ID)
+@Mod.EventBusSubscriber(modid = "MOD_ID", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CobbleWarp
 {
     // Define mod id in a common place for everything to reference
@@ -44,5 +46,10 @@ public class CobbleWarp
         {
 
         }
+    }
+
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        ExampleCommand.register(event.getDispatcher());
     }
 }
